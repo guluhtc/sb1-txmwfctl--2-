@@ -1,9 +1,10 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { Copy, Heart, Share2, BookmarkPlus } from "lucide-react"
 import { toast } from "sonner"
+
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 
 interface BioListProps {
   bios: string[]

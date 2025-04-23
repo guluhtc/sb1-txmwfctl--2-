@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
 import axios from 'axios'
+import { NextResponse } from 'next/server'
 
 const API_KEY = '1ecbc17c-caf1-4602-a40c-a7d1b68a45a1'
 const API_URL = 'https://apihut.in/api/download/videos'

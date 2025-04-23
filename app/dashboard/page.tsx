@@ -1,13 +1,14 @@
 "use client"
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { supabase } from '@/lib/supabase'
-import { DashboardStats } from '@/components/dashboard/stats'
-import { PostScheduler } from '@/components/dashboard/post-scheduler'
+import { useState, useEffect } from 'react'
+
+import { AiTools } from '@/components/dashboard/ai-tools'
 import { AnalyticsSection } from '@/components/dashboard/analytics'
 import { HashtagSuggestions } from '@/components/dashboard/hashtag-suggestions'
-import { AiTools } from '@/components/dashboard/ai-tools'
+import { PostScheduler } from '@/components/dashboard/post-scheduler'
+import { DashboardStats } from '@/components/dashboard/stats'
+import { supabase } from '@/lib/supabase'
 
 interface User {
   id: string;

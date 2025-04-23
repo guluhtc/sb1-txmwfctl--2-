@@ -1,8 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Logo } from "@/components/navbar/logo"
+
 import { DesktopNav } from "@/components/navbar/desktop-nav"
+import { Logo } from "@/components/navbar/logo"
 import { MobileNav } from "@/components/navbar/mobile-nav"
 
 export function Navbar() {

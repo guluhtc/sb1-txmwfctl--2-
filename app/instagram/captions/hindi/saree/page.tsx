@@ -1,16 +1,17 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
-import { FooterSection } from "@/components/footer-section"
 import { Crown } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
-import { ToolsToggle } from "@/components/instagram/tools-toggle"
-import { SareeCaptionForm } from "@/components/captions/hindi/saree/caption-form"
+
 import { CaptionList } from "@/components/captions/caption-list"
-import { SareeFeatureCards } from "@/components/captions/hindi/saree/feature-cards"
+import { SareeCaptionForm } from "@/components/captions/hindi/saree/caption-form"
 import { CaptionSuggestions } from "@/components/captions/hindi/saree/caption-suggestions"
+import { SareeFeatureCards } from "@/components/captions/hindi/saree/feature-cards"
+import { FooterSection } from "@/components/footer-section"
+import { ToolsToggle } from "@/components/instagram/tools-toggle"
+import { Navbar } from "@/components/navbar"
 
 export default function SareeCaptionsPage() {
   const [isGenerating, setIsGenerating] = useState(false)

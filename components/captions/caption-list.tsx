@@ -1,8 +1,9 @@
 "use client"
 
+import { Copy, BookOpen } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Copy, BookOpen } from "lucide-react"
 
 interface CaptionListProps {
   captions: string[]

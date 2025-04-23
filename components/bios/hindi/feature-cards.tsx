@@ -1,7 +1,8 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
 import { Target, TrendingUp, Hash } from "lucide-react"
+
+import { Card } from "@/components/ui/card"
 
 export function HindiFeatureCards() {
   const features = [

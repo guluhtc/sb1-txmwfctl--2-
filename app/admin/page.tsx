@@ -1,21 +1,22 @@
 "use client"
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { supabase } from '@/lib/supabase'
 import { Plus } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
+
+import { FeaturesTable } from '@/components/admin/features-table'
+import { PlansTable } from '@/components/admin/plans-table'
+import { StatsCards } from '@/components/admin/stats-cards'
+import { UsersTable } from '@/components/admin/users-table'
+import { Button } from '@/components/ui/button'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs'
-import { StatsCards } from '@/components/admin/stats-cards'
-import { UsersTable } from '@/components/admin/users-table'
-import { FeaturesTable } from '@/components/admin/features-table'
-import { PlansTable } from '@/components/admin/plans-table'
+import { supabase } from '@/lib/supabase'
 
 interface User {
   id: string

@@ -1,8 +1,9 @@
 "use client"
 
+import { Smile, Hash, Target, Zap, Wand2, RefreshCw, Sliders } from "lucide-react"
 import { useState } from "react"
+
 import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
 import { Card } from "@/components/ui/card"
 import {
   Select,
@@ -11,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Smile, Hash, Target, Zap, Wand2, RefreshCw, Sliders } from "lucide-react"
+import { Textarea } from "@/components/ui/textarea"
 
 interface CaptionFormProps {
   onGenerate: (prompt: string, options: CaptionOptions) => Promise<void>

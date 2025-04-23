@@ -1,9 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card } from "@/components/ui/card"
 import { PenSquare, UserCircle, Hash } from "lucide-react"
 import { useRouter } from "next/navigation"
+
+import { Card } from "@/components/ui/card"
 
 const generators = [
   {

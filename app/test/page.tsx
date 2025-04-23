@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { Card } from "@/components/ui/card"
 import { Loader2, Copy } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
+
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Textarea } from "@/components/ui/textarea"
 import { generateCaption } from "@/lib/openai"
 
 export default function TestPage() {

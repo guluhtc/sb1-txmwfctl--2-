@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
+
 import { InstagramSettingsManager } from '@/components/instagram/settings-manager'
 
 export default function SettingsPage() {

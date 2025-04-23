@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
+
 import { WebhookManager } from '@/components/instagram/webhook-manager'
 
 export default function WebhooksPage() {

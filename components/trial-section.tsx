@@ -1,10 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { Check, ArrowRight, Crown, Sparkles, Rocket, Star } from "lucide-react"
+
+import { SignUpForm } from "@/components/signup-form"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Check, ArrowRight, Crown, Sparkles, Rocket, Star } from "lucide-react"
-import { SignUpForm } from "@/components/signup-form"
 
 const features = [
   {

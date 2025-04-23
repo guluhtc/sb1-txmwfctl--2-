@@ -1,9 +1,11 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
+import { Loader2, Mail, Lock, Facebook, Instagram } from "lucide-react"
+import { useState } from "react"
+import { toast } from "sonner"
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import {
   Dialog,
   DialogContent,
@@ -11,8 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { toast } from "sonner"
-import { Loader2, Mail, Lock, Facebook, Instagram } from "lucide-react"
+import { Input } from "@/components/ui/input"
 import { supabase } from "@/lib/supabase"
 
 export function UserLoginForm() {

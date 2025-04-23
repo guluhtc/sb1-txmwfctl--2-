@@ -1,8 +1,9 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Facebook, Instagram, Loader2 } from "lucide-react"
 import { toast } from "sonner"
+
+import { Button } from "@/components/ui/button"
 
 interface SocialButtonsProps {
   isLoading: boolean

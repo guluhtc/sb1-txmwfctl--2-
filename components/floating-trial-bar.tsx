@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { SignUpForm } from "@/components/signup-form"
 import { X, Sparkles, ArrowRight } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
+
+import { SignUpForm } from "@/components/signup-form"
+import { Button } from "@/components/ui/button"
 
 export function FloatingTrialBar() {
   const [isVisible, setIsVisible] = useState(false)

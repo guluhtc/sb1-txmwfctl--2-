@@ -1,8 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
+
 import { FooterSection } from "@/components/footer-section"
+import { Navbar } from "@/components/navbar"
 
 export default function TermsOfService() {
   return (

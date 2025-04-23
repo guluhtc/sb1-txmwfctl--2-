@@ -1,10 +1,11 @@
 "use client"
 
+import { Instagram, Loader2 } from "lucide-react"
 import { useState } from 'react'
+import { toast } from "sonner"
+
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Instagram, Loader2 } from "lucide-react"
-import { toast } from "sonner"
 
 export function InstagramBusinessLogin() {
   const [isLoading, setIsLoading] = useState(false)

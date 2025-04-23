@@ -1,4 +1,5 @@
 import { instagramConfig } from './config'
+
 import { supabase } from '@/lib/supabase'
 
 const GRAPH_API_URL = `${instagramConfig.graphApiUrl}/${instagramConfig.apiVersion}`

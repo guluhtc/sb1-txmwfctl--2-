@@ -1,16 +1,18 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
+import { Instagram, Loader2, Mail, Lock } from "lucide-react"
+import Link from "next/link"
+import { useState } from "react"
+import { toast } from "sonner"
+
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card } from "@/components/ui/card"
-import { Instagram, Loader2, Mail, Lock } from "lucide-react"
-import { toast } from "sonner"
-import { supabase } from "@/lib/supabase"
 import { InstagramBusinessAuth } from "@/lib/instagram/auth"
-import Link from "next/link"
+import { supabase } from "@/lib/supabase"
+
 
 export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false)

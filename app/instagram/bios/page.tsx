@@ -1,16 +1,17 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
-import { FooterSection } from "@/components/footer-section"
 import { Crown } from "lucide-react"
+import { Metadata } from "next"
+import { useState } from "react"
 import { toast } from "sonner"
-import { ToolsToggle } from "@/components/instagram/tools-toggle"
+
 import { BioForm } from "@/components/bios/bio-form"
 import { BioList } from "@/components/bios/bio-list"
 import { FeatureCards } from "@/components/bios/feature-cards"
-import { Metadata } from "next"
+import { FooterSection } from "@/components/footer-section"
+import { ToolsToggle } from "@/components/instagram/tools-toggle"
+import { Navbar } from "@/components/navbar"
 
 type Props = {
   searchParams?: { [key: string]: string | string[] | undefined }

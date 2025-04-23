@@ -1,15 +1,16 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
+
 import { FooterSection } from "@/components/footer-section"
+import { CTASection } from "@/components/instagram/cta-section"
+import { DownloaderCards } from "@/components/instagram/downloader-cards"
+import { DownloaderToggle } from "@/components/instagram/downloader-toggle"
+import { FeaturesSection } from "@/components/instagram/features-section"
+import { GeneratorCards } from "@/components/instagram/generator-cards"
 import { HeroSection } from "@/components/instagram/hero-section"
 import { ToolsToggle } from "@/components/instagram/tools-toggle"
-import { GeneratorCards } from "@/components/instagram/generator-cards"
-import { DownloaderToggle } from "@/components/instagram/downloader-toggle"
-import { DownloaderCards } from "@/components/instagram/downloader-cards"
-import { FeaturesSection } from "@/components/instagram/features-section"
-import { CTASection } from "@/components/instagram/cta-section"
+import { Navbar } from "@/components/navbar"
 
 export default function InstagramPage() {
   return (

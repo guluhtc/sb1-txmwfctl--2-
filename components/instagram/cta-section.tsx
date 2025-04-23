@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+
 import { SignUpForm } from "@/components/signup-form"
 
 export function CTASection() {

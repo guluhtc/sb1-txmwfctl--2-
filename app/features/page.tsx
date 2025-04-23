@@ -1,9 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
-import { FooterSection } from "@/components/footer-section"
+
 import { FeatureCards } from "@/components/feature-cards"
+import { FooterSection } from "@/components/footer-section"
+import { Navbar } from "@/components/navbar"
 
 export default function FeaturesPage() {
   return (

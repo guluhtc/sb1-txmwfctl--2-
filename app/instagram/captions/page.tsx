@@ -1,15 +1,16 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
-import { FooterSection } from "@/components/footer-section"
 import { Crown } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
-import { ToolsToggle } from "@/components/instagram/tools-toggle"
+
 import { CaptionForm } from "@/components/captions/caption-form"
 import { CaptionList } from "@/components/captions/caption-list"
 import { FeatureCards } from "@/components/captions/feature-cards"
+import { FooterSection } from "@/components/footer-section"
+import { ToolsToggle } from "@/components/instagram/tools-toggle"
+import { Navbar } from "@/components/navbar"
 import { generateContent } from "@/lib/openai"
 
 type Props = {

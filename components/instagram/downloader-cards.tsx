@@ -1,9 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card } from "@/components/ui/card"
 import { Download, Video, Film, Ghost, User } from "lucide-react"
 import { useRouter } from "next/navigation"
+
+import { Card } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,

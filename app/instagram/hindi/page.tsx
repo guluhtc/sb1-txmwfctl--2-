@@ -1,13 +1,14 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
+
 import { FooterSection } from "@/components/footer-section"
+import { CTASection } from "@/components/instagram/hindi/cta-section"
+import { FeaturesSection } from "@/components/instagram/hindi/features-section"
+import { GeneratorCards } from "@/components/instagram/hindi/generator-cards"
 import { HeroSection } from "@/components/instagram/hindi/hero-section"
 import { HindiToolsToggle } from "@/components/instagram/hindi/tools-toggle"
-import { GeneratorCards } from "@/components/instagram/hindi/generator-cards"
-import { FeaturesSection } from "@/components/instagram/hindi/features-section"
-import { CTASection } from "@/components/instagram/hindi/cta-section"
+import { Navbar } from "@/components/navbar"
 
 export default function HindiInstagramPage() {
   return (

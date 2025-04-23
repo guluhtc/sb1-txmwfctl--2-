@@ -1,9 +1,6 @@
 "use client"
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import {
   LayoutDashboard,
   Calendar,
@@ -19,6 +16,11 @@ import {
   Instagram
 } from 'lucide-react'
 import { useRouter, usePathname } from 'next/navigation'
+import { useState } from 'react'
+
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+
 
 const menuItems = [
   {

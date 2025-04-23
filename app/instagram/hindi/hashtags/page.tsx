@@ -1,15 +1,16 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
-import { FooterSection } from "@/components/footer-section"
 import { Crown } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
-import { HindiToolsToggle } from "@/components/instagram/hindi/tools-toggle"
-import { HindiHashtagForm } from "@/components/hashtags/hindi/hashtag-form"
+
+import { FooterSection } from "@/components/footer-section"
 import { HashtagList } from "@/components/hashtags/hashtag-list"
 import { HindiFeatureCards } from "@/components/hashtags/hindi/feature-cards"
+import { HindiHashtagForm } from "@/components/hashtags/hindi/hashtag-form"
+import { HindiToolsToggle } from "@/components/instagram/hindi/tools-toggle"
+import { Navbar } from "@/components/navbar"
 import { generateHashtags } from "@/lib/openai"
 
 interface HashtagOptions {

@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion"
 import { Instagram, MapPin, Sparkles, Languages, Clock, Users, Star, Rocket, Zap, TrendingUp, Shield } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { SignUpForm } from "@/components/signup-form"
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
+
+import { SignUpForm } from "@/components/signup-form"
+import { Button } from "@/components/ui/button"
+
 
 export function HeroSection() {
   return (

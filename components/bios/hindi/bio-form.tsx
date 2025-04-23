@@ -1,9 +1,11 @@
 "use client"
 
+import { Wand2, RefreshCw, Sliders } from "lucide-react"
 import { useState } from "react"
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 import {
   Select,
   SelectContent,
@@ -11,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Wand2, RefreshCw, Sliders } from "lucide-react"
 import { Slider } from "@/components/ui/slider"
 
 interface BioFormProps {
@@ -48,17 +49,23 @@ export function HindiBioForm({ onGenerate, isGenerating }: BioFormProps) {
       <div className="grid gap-6">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
-            <label className="text-sm font-medium">विषय/विशेषज्ञता</label>
+            <label htmlFor="topic" className="block text-sm font-medium text-gray-700">
+              विषय/विशेषज्ञता
+            </label>
             <Input
-              placeholder="आपका मुख्य फोकस क्या है? (जैसे: डिजिटल मार्केटिंग)"
+              id="topic"
+              type="text"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
-              className="h-11"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              placeholder="आपका मुख्य फोकस क्या है? (जैसे: डिजिटल मार्केटिंग)"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">श्रेणी</label>
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+              श्रेणी
+            </label>
             <Select value={category} onValueChange={setCategory}>
               <SelectTrigger>
                 <SelectValue placeholder="श्रेणी चुनें" />
@@ -85,13 +92,17 @@ export function HindiBioForm({ onGenerate, isGenerating }: BioFormProps) {
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium">बायो स्टाइल</label>
+            <label htmlFor="style" className="block text-sm font-medium text-gray-700">
+              बायो स्टाइल
+            </label>
             <Sliders className="h-4 w-4 text-muted-foreground" />
           </div>
 
           <div className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-medium">स्टाइल</label>
+              <label htmlFor="style" className="block text-sm font-medium text-gray-700">
+                स्टाइल
+              </label>
               <Select 
                 value={options.style} 
                 onValueChange={(value) => setOptions(prev => ({ ...prev, style: value }))}
@@ -110,7 +121,9 @@ export function HindiBioForm({ onGenerate, isGenerating }: BioFormProps) {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium">टोन</label>
+              <label htmlFor="tone" className="block text-sm font-medium text-gray-700">
+                टोन
+              </label>
               <Select 
                 value={options.tone} 
                 onValueChange={(value) => setOptions(prev => ({ ...prev, tone: value }))}
@@ -130,7 +143,9 @@ export function HindiBioForm({ onGenerate, isGenerating }: BioFormProps) {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium">बायो की लंबाई</label>
+                <label htmlFor="length" className="block text-sm font-medium text-gray-700">
+                  बायो की लंबाई
+                </label>
                 <span className="text-sm text-muted-foreground">{options.length} अक्षर</span>
               </div>
               <Slider

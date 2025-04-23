@@ -1,7 +1,10 @@
 "use client"
 
+import { Wand2, RefreshCw, Hash, Sliders } from "lucide-react"
 import { useState } from "react"
+
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -10,8 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Card } from "@/components/ui/card"
-import { Wand2, RefreshCw, Hash, Sliders } from "lucide-react"
 import { Slider } from "@/components/ui/slider"
 
 interface HashtagFormProps {

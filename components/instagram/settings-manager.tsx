@@ -1,16 +1,17 @@
 "use client"
 
+import { Settings2, Save, RefreshCw, Key, Instagram, AlertCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { toast } from 'sonner'
+
+import { InstagramLoginButton } from '@/components/instagram/login-button'
 import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
-import { toast } from 'sonner'
-import { Settings2, Save, RefreshCw, Key, Instagram, AlertCircle } from 'lucide-react'
 import { instagramConfig } from '@/lib/instagram/config'
-import { InstagramLoginButton } from '@/components/instagram/login-button'
-import { supabase } from '@/lib/supabase'
 import { verifyToken, refreshToken } from '@/lib/instagram/token'
+import { supabase } from '@/lib/supabase'
 
 export function InstagramSettingsManager() {
   const [settings, setSettings] = useState({

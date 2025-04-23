@@ -1,16 +1,18 @@
 "use client"
 
-import { useState, useEffect, Suspense } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
 import { Loader2, Mail, Lock, Instagram, Sparkles, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
-import { toast } from "sonner"
-import { supabase } from "@/lib/supabase"
-import { InstagramBusinessAuth } from "@/lib/instagram/auth"
 import Link from "next/link"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useState, useEffect, Suspense } from "react"
+import { toast } from "sonner"
+
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { InstagramBusinessAuth } from "@/lib/instagram/auth"
+import { supabase } from "@/lib/supabase"
+
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)

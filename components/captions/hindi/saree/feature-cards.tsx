@@ -1,7 +1,8 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
 import { Sparkles, Clock, Palette, Share2 } from "lucide-react"
+
+import { Card } from "@/components/ui/card"
 
 export function SareeFeatureCards() {
   const features = [

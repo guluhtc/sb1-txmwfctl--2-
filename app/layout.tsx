@@ -1,11 +1,12 @@
 "use client"
 
 import './globals.css';
-import { Toaster } from "@/components/ui/sonner";
-import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { useEffect, useState } from 'react'
+
 import { Navbar } from '@/components/navbar'
+import { Toaster } from "@/components/ui/sonner";
+import { supabase } from '@/lib/supabase'
 
 export default function RootLayout({
   children,

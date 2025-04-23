@@ -1,15 +1,16 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
-import { FooterSection } from "@/components/footer-section"
 import { Crown } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
-import { HindiToolsToggle } from "@/components/instagram/hindi/tools-toggle"
-import { HindiCaptionForm } from "@/components/captions/hindi/caption-form"
+
 import { CaptionList } from "@/components/captions/caption-list"
+import { HindiCaptionForm } from "@/components/captions/hindi/caption-form"
 import { HindiFeatureCards } from "@/components/captions/hindi/feature-cards"
+import { FooterSection } from "@/components/footer-section"
+import { HindiToolsToggle } from "@/components/instagram/hindi/tools-toggle"
+import { Navbar } from "@/components/navbar"
 import { generateCaption } from "@/lib/openai"
 
 export default function HindiCaptionsPage() {

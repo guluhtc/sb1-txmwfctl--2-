@@ -1,9 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card } from "@/components/ui/card"
 import { Star, Quote } from "lucide-react"
 import Image from 'next/image'
+
+import { Card } from "@/components/ui/card"
 
 const testimonials = [
   {

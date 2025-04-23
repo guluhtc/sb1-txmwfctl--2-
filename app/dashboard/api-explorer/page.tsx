@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
+
 import { GraphApiExplorer } from '@/components/instagram/graph-api-explorer'
 
 export default function ApiExplorerPage() {

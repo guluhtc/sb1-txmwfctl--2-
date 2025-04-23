@@ -1,59 +1,51 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { Loader2, Mail, Lock } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { toast } from "sonner"
+
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 import { supabase } from "@/lib/supabase"
 
-export default function AdminLoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+interface AuthData {
+  email: string;
+  password: string;
+}
 
-  const handleLogin = async (e: React.FormEvent) => {
+export default function AdminLoginPage() {
+  const router = useRouter()
+  const [authData, setAuthData] = useState<AuthData>({
+    email: '',
+    password: '',
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setError(null)
 
     try {
-      const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(authData),
       })
 
-      if (authError) {
-        throw authError
+      if (!response.ok) {
+        throw new Error('Login failed')
       }
 
-      // Check if user is admin
-      const { data: userData, error: userError } = await supabase
-        .from("users")
-        .select("role")
-        .eq("email", email)
-        .maybeSingle()
-
-      if (userError) {
-        console.error("Error fetching user role:", userError)
-        toast.error("Error verifying admin access")
-        return
-      }
-
-      if (!userData || userData.role !== "admin") {
-        toast.error("Access denied. Admin privileges required.")
-        await supabase.auth.signOut()
-        return
-      }
-
-      router.push("/admin")
-      toast.success("Welcome back, admin!")
-    } catch (error: any) {
-      console.error("Login error:", error)
-      toast.error(error.message || "Failed to login")
+      router.push('/admin/dashboard')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
     } finally {
       setIsLoading(false)
     }
@@ -77,14 +69,14 @@ export default function AdminLoginPage() {
         </div>
 
         <Card className="p-6 space-y-6">
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-4">
               <div className="relative">
                 <Input
                   type="email"
                   placeholder="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={authData.email}
+                  onChange={(e) => setAuthData({ ...authData, email: e.target.value })}
                   className="pl-10 h-12"
                   required
                 />
@@ -95,8 +87,8 @@ export default function AdminLoginPage() {
                 <Input
                   type="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={authData.password}
+                  onChange={(e) => setAuthData({ ...authData, password: e.target.value })}
                   className="pl-10 h-12"
                   required
                 />

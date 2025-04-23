@@ -1,15 +1,16 @@
 "use client"
 
+import { Wand2, RefreshCw, Sliders } from "lucide-react"
 import { useState } from "react"
+import { toast } from "sonner"
+
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card } from "@/components/ui/card"
-import { Wand2, RefreshCw, Sliders } from "lucide-react"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
-import { toast } from "sonner"
 import { generateContent } from "@/lib/openai"
 
 interface BioFormProps {

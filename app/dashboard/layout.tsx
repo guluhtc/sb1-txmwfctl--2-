@@ -1,11 +1,14 @@
 "use client"
 
-import { useEffect, useState, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
 import { Loader2 } from 'lucide-react'
-import { Sidebar } from '@/components/dashboard/sidebar'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState, useCallback } from 'react'
+
 import { DashboardHeader } from '@/components/dashboard/header'
+import { Sidebar } from '@/components/dashboard/sidebar'
+import { supabase } from '@/lib/supabase'
+
+
 
 interface User {
   id: string;

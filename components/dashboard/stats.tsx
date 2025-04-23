@@ -1,8 +1,9 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Card } from '@/components/ui/card'
 import { Users, Heart, BarChart2, TrendingUp } from 'lucide-react'
+
+import { Card } from '@/components/ui/card'
 
 const stats = [
   {

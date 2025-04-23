@@ -1,7 +1,8 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Lock } from 'lucide-react'
+
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 
 export function WebhookManager() {
   return (

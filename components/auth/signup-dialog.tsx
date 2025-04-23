@@ -1,5 +1,10 @@
 "use client"
 
+import { motion, AnimatePresence } from "framer-motion"
+
+import { SignupFormFields } from "./signup-form-fields"
+import { SocialButtons } from "./social-buttons"
+
 import {
   Dialog,
   DialogContent,
@@ -7,9 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { SocialButtons } from "./social-buttons"
-import { SignupFormFields } from "./signup-form-fields"
-import { motion, AnimatePresence } from "framer-motion"
+
 
 interface SignupFormData {
   email: string

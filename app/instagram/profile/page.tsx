@@ -1,15 +1,18 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
-import { FooterSection } from "@/components/footer-section"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
 import { User, Loader2 } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
+
+import { FooterSection } from "@/components/footer-section"
 import { DownloaderToggle } from "@/components/instagram/downloader-toggle"
+import { Navbar } from "@/components/navbar"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+
+
 
 export default function ProfilePicturePage() {
   const [username, setUsername] = useState("")

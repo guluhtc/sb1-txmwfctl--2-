@@ -1,15 +1,16 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
-import { FooterSection } from "@/components/footer-section"
 import { Crown } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
-import { HindiToolsToggle } from "@/components/instagram/hindi/tools-toggle"
-import { HindiBioForm } from "@/components/bios/hindi/bio-form"
+
 import { BioList } from "@/components/bios/bio-list"
+import { HindiBioForm } from "@/components/bios/hindi/bio-form"
 import { HindiFeatureCards } from "@/components/bios/hindi/feature-cards"
+import { FooterSection } from "@/components/footer-section"
+import { HindiToolsToggle } from "@/components/instagram/hindi/tools-toggle"
+import { Navbar } from "@/components/navbar"
 import { generateBio } from "@/lib/openai"
 
 interface BioOptions {

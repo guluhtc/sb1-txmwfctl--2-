@@ -1,14 +1,16 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
+import { useState } from "react"
+import { toast } from "sonner"
+
 import { FooterSection } from "@/components/footer-section"
+import { Navbar } from "@/components/navbar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "sonner"
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
+
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)

@@ -1,7 +1,8 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
 import { Languages, Brain, Palette } from "lucide-react"
+
+import { Card } from "@/components/ui/card"
 
 const features = [
   {

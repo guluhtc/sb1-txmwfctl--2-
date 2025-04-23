@@ -1,5 +1,6 @@
-import { supabase } from '@/lib/supabase'
 import { verifyToken as checkTokenValidity } from './token'
+
+import { supabase } from '@/lib/supabase'
 
 export interface VerificationResult {
   isValid: boolean;

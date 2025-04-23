@@ -1,14 +1,15 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Navbar } from "@/components/navbar"
 import { Crown } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
-import { ToolsToggle } from "@/components/instagram/tools-toggle"
+
+import { FeatureCards } from "@/components/hashtags/feature-cards"
 import { HashtagForm } from "@/components/hashtags/hashtag-form"
 import { HashtagList } from "@/components/hashtags/hashtag-list"
-import { FeatureCards } from "@/components/hashtags/feature-cards"
+import { ToolsToggle } from "@/components/instagram/tools-toggle"
+import { Navbar } from "@/components/navbar"
 import { generateContent } from "@/lib/openai"
 
 type Props = {

@@ -1,11 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card } from "@/components/ui/card"
 import { 
   Brain, Instagram, Calendar, Zap, Target, BarChart2, 
   Hash, Users, Bell, Sparkles, MessageCircle, TrendingUp 
 } from "lucide-react"
+
+import { Card } from "@/components/ui/card"
 
 const features = [
   {
