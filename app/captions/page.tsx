@@ -16,13 +16,23 @@ type Props = {
   searchParams?: { [key: string]: string | string[] | undefined }
 }
 
+interface CaptionOptions {
+  tone: string
+  length: string
+  includeEmojis: boolean
+  style: string
+  engagement: string
+  includeQuestion: boolean
+  includeQuote: boolean
+}
+
 export default function CaptionsGeneratorPage({ searchParams }: Props) {
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedCaptions, setGeneratedCaptions] = useState<string[]>([])
   const [isPremiumPreview, setIsPremiumPreview] = useState(true)
   const [savedCaptions, setSavedCaptions] = useState<string[]>([])
 
-  const handleGenerate = async (prompt: string, options: { style?: string; engagement?: boolean; includeQuestion?: boolean; includeQuote?: boolean } = {}) => {
+  const handleGenerate = async (prompt: string, options: CaptionOptions) => {
     if (!prompt) {
       toast.error("Please enter a prompt")
       return
@@ -30,7 +40,12 @@ export default function CaptionsGeneratorPage({ searchParams }: Props) {
 
     setIsGenerating(true)
     try {
-      const caption = await generateCaption(prompt, options)
+      const caption = await generateCaption(prompt, {
+        style: options.style,
+        engagement: options.engagement === "high",
+        includeQuestion: options.includeQuestion,
+        includeQuote: options.includeQuote
+      })
       if (caption) {
         setGeneratedCaptions([caption, ...generatedCaptions])
         toast.success("Caption generated successfully!")
