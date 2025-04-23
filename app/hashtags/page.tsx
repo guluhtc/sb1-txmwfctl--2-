@@ -19,6 +19,7 @@ export default function HashtagsGeneratorPage({ searchParams }: Props) {
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedHashtags, setGeneratedHashtags] = useState<string[]>([])
   const [isPremiumPreview, setIsPremiumPreview] = useState(true)
+  const [savedHashtags, setSavedHashtags] = useState<string[]>([])
 
   const handleGenerate = async (topic: string, category: string, options: any) => {
     setIsGenerating(true)
@@ -44,6 +45,11 @@ export default function HashtagsGeneratorPage({ searchParams }: Props) {
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text)
     toast.success("Hashtags copied to clipboard!")
+  }
+
+  const handleSave = (hashtags: string) => {
+    setSavedHashtags(prev => [...prev, hashtags])
+    toast.success("Hashtags saved to library!")
   }
 
   return (
@@ -80,6 +86,7 @@ export default function HashtagsGeneratorPage({ searchParams }: Props) {
             <HashtagList 
               hashtags={generatedHashtags}
               onCopy={handleCopy}
+              onSave={handleSave}
             />
 
             <FeatureCards />
