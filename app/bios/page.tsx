@@ -20,30 +20,8 @@ export default function BiosGeneratorPage({ searchParams }: Props) {
   const [generatedBios, setGeneratedBios] = useState<string[]>([])
   const [isPremiumPreview, setIsPremiumPreview] = useState(true)
 
-  const handleGenerate = async (topic: string, category: string) => {
-    if (!topic) {
-      toast.error("Please select your topic")
-      return
-    }
-
-    setIsGenerating(true)
-    try {
-      // Simulated API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      const dummyBios = [
-        "🚀 Digital Marketing Specialist | Helping brands grow online\n📈 5+ years experience\n💡 Tips & Strategies\n🔗 Link in bio",
-        "📱 Social Media Expert | Content Creator\n✨ Sharing growth secrets\n🎯 DM for collaborations\n📍 Mumbai, India",
-        "💼 Business Coach & Mentor\n🌟 Helping entrepreneurs scale\n📊 Marketing strategies that work\n📩 Contact: email@example.com"
-      ]
-      
-      setGeneratedBios(dummyBios)
-      toast.success("Bios generated successfully!")
-    } catch (error) {
-      toast.error("Failed to generate bios")
-    } finally {
-      setIsGenerating(false)
-    }
+  const handleGenerate = async (bios: string[]) => {
+    setGeneratedBios(bios)
   }
 
   const handleCopy = (text: string) => {

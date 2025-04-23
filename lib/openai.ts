@@ -32,4 +32,27 @@ export async function generateContent(prompt: string, maxTokens: number = 500) {
   }
 }
 
+export async function generateCaption(prompt: string, options: { style?: string; engagement?: boolean; includeQuestion?: boolean; includeQuote?: boolean } = {}) {
+  const { style, engagement, includeQuestion, includeQuote } = options;
+  let contentPrompt = `Generate an engaging Instagram caption for: ${prompt}`;
+  
+  if (style) contentPrompt += `\nStyle: ${style}`;
+  if (engagement) contentPrompt += '\nMake it highly engaging';
+  if (includeQuestion) contentPrompt += '\nInclude a question to encourage comments';
+  if (includeQuote) contentPrompt += '\nInclude a relevant quote';
+  
+  return generateContent(contentPrompt);
+}
+
+export async function generateBio(topic: string, category: string) {
+  const prompt = `Generate a professional Instagram bio for a ${category} account about ${topic}. Make it engaging and include relevant keywords.`;
+  return generateContent(prompt);
+}
+
+export async function generateHashtags(topic: string, count: number = 30) {
+  const prompt = `Generate ${count} relevant Instagram hashtags for posts about ${topic}. Include a mix of popular and niche hashtags.`;
+  const content = await generateContent(prompt);
+  return content?.split(/\s+/).filter(tag => tag.startsWith('#')) || [];
+}
+
 export default openai;

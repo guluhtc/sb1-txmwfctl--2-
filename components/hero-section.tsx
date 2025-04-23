@@ -5,6 +5,7 @@ import { Instagram, MapPin, Sparkles, Languages, Clock, Users, Star, Rocket, Zap
 import { Button } from "@/components/ui/button"
 import { SignUpForm } from "@/components/signup-form"
 import Link from "next/link"
+import Image from "next/image"
 
 export function HeroSection() {
   return (
@@ -116,9 +117,11 @@ export function HeroSection() {
               "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop"
             ].map((src, i) => (
               <div key={i} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white overflow-hidden">
-                <img 
+                <Image 
                   src={src} 
                   alt={`Creator ${i + 1}`}
+                  width={32}
+                  height={32}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -226,9 +229,11 @@ export function HeroSection() {
               >
                 <div className="relative mb-4">
                   <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                    <img 
+                    <Image 
                       src={creator.image} 
                       alt={creator.name}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-cover"
                     />
                   </div>
