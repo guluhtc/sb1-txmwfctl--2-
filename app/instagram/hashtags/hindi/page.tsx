@@ -23,6 +23,7 @@ export default function HindiHashtagsPage() {
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedHashtags, setGeneratedHashtags] = useState<string[]>([])
   const [isPremiumPreview, setIsPremiumPreview] = useState(true)
+  const [savedHashtags, setSavedHashtags] = useState<string[]>([])
 
   const handleGenerate = async (topic: string, options: HashtagOptions) => {
     setIsGenerating(true)
@@ -31,13 +32,13 @@ export default function HindiHashtagsPage() {
       await new Promise(resolve => setTimeout(resolve, 2000))
       
       const dummyHashtags = [
-        "#डिजिटलमार्केटिंग #मार्केटिंगस्ट्रैटेजी #बिजनेसग्रोथ #ऑनलाइनमार्केटिंग #मार्केटिंगटिप्स #सोशलमीडियामार्केटिंग #कंटेंटक्रिएटर #डिजिटलइंडिया",
-        "#बिजनेसटिप्स #एंटरप्रेन्योरशिप #स्टार्टअपइंडिया #स्मॉलबिजनेस #डिजिटलट्रांसफॉर्मेशन #बिजनेसकोच #बिजनेसग्रोथ #इंडियनबिजनेस",
-        "#मार्केटिंगएजेंसी #ब्रांडस्ट्रैटेजी #डिजिटलमार्केटर #सोशलमीडियाटिप्स #कंटेंटस्ट्रैटेजी #मार्केटिंगकंसल्टेंट #बिजनेसमार्केटिंग"
+        "#डिजिटलमार्केटिंग #मार्केटिंगस्ट्रैटेजी #बिजनेसग्रोथ #ऑनलाइनमार्केटिंग #मार्केटिंगटिप्स #सोशलमीडियामार्केटिंग #कंटेंटक्रिएटर #डिजिटलइंडिया #मार्केटिंगएक्सपर्ट #ग्रोथहैकिंग",
+        "#बिजनेसटिप्स #एंटरप्रेन्योरशिप #स्टार्टअपइंडिया #स्मॉलबिजनेस #डिजिटलट्रांसफॉर्मेशन #बिजनेसकोच #बिजनेसग्रोथ #इंडियनबिजनेस #सक्सेसमाइंडसेट #बिजनेसस्ट्रैटेजी",
+        "#मार्केटिंगएजेंसी #ब्रांडस्ट्रैटेजी #डिजिटलमार्केटर #सोशलमीडियाटिप्स #कंटेंटस्ट्रैटेजी #मार्केटिंगकंसल्टेंट #बिजनेसमार्केटिंग #मार्केटिंगएजेंसी #ग्रोथस्ट्रैटेजी #आरओआई"
       ]
       
       setGeneratedHashtags(dummyHashtags)
-      toast.success("हैशटैग सफलतापूर्वक तैयार किए गए!")
+      toast.success("हैशटैग सफलतापूर्वक जनरेट किए गए!")
     } catch (error) {
       toast.error("हैशटैग जनरेट करने में विफल")
     } finally {
@@ -48,6 +49,11 @@ export default function HindiHashtagsPage() {
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text)
     toast.success("हैशटैग क्लिपबोर्ड पर कॉपी किए गए!")
+  }
+
+  const handleSave = (hashtags: string) => {
+    setSavedHashtags(prev => [...prev, hashtags])
+    toast.success("हैशटैग लाइब्रेरी में सेव किए गए!")
   }
 
   return (
@@ -77,13 +83,14 @@ export default function HindiHashtagsPage() {
             {isPremiumPreview && (
               <div className="flex items-center justify-center gap-2 text-sm text-primary">
                 <Crown className="h-4 w-4" />
-                <span>30 दिन का फ्री ट्रायल</span>
+                <span>30 दिनों के लिए प्रीमियम फीचर्स फ्री</span>
               </div>
             )}
 
             <HashtagList 
               hashtags={generatedHashtags}
               onCopy={handleCopy}
+              onSave={handleSave}
             />
 
             <HindiFeatureCards />
