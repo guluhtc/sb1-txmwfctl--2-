@@ -29,8 +29,34 @@ function checkRateLimit() {
   return true
 }
 
+interface InstagramApiError {
+  message: string;
+  response?: {
+    status: number;
+    data?: {
+      message?: string;
+    };
+  };
+  code?: string;
+}
+
+interface ReelResponse {
+  message?: {
+    data?: Array<{
+      url?: string;
+      thumbnail?: string;
+    }>;
+  };
+  data?: Array<{
+    url?: string;
+    thumbnail?: string;
+  }>;
+  url?: string;
+  thumbnail?: string;
+}
+
 // Helper function to extract media URL from various response formats
-function extractMediaUrl(responseData: any): string | null {
+function extractMediaUrl(responseData: ReelResponse): string | null {
   // Log response structure for debugging
   console.log('API Response Structure:', JSON.stringify(responseData, null, 2))
 
@@ -58,11 +84,6 @@ function extractMediaUrl(responseData: any): string | null {
 
   if (responseData?.thumbnail) {
     return responseData.thumbnail
-  }
-
-  // If the response is an array
-  if (Array.isArray(responseData) && responseData[0]) {
-    return responseData[0].url || responseData[0].thumbnail || null
   }
 
   return null
@@ -148,17 +169,19 @@ export async function POST(request: Request) {
         }
       })
 
-    } catch (error: any) {
-      console.error('API Error:', error.message)
-      if (error.response?.data) {
-        console.error('API Response:', error.response.data)
+    } catch (error: unknown) {
+      console.error('API Error:', error instanceof Error ? error.message : 'Unknown error')
+      const apiError = error as InstagramApiError
+      
+      if (apiError.response?.data) {
+        console.error('API Response:', apiError.response.data)
       }
 
       let errorMessage = 'Failed to download reel'
       let statusCode = 500
       
-      if (error.response) {
-        statusCode = error.response.status
+      if (apiError.response) {
+        statusCode = apiError.response.status
         
         switch (statusCode) {
           case 400:
@@ -181,16 +204,16 @@ export async function POST(request: Request) {
         }
 
         // Add more context to the error message
-        if (error.response.data?.message) {
-          errorMessage += `: ${error.response.data.message}`
+        if (apiError.response.data?.message) {
+          errorMessage += `: ${apiError.response.data.message}`
         }
-      } else if (error.code === 'ECONNABORTED') {
+      } else if (apiError.code === 'ECONNABORTED') {
         errorMessage = 'Request timed out'
         statusCode = 408
-      } else if (error.message.includes('Invalid response format')) {
+      } else if (error instanceof Error && error.message.includes('Invalid response format')) {
         errorMessage = 'Could not process API response'
         statusCode = 502
-      } else if (error.message.includes('Could not extract media URL')) {
+      } else if (error instanceof Error && error.message.includes('Could not extract media URL')) {
         errorMessage = 'Could not extract media URL from response'
         statusCode = 422
       }
@@ -198,7 +221,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           message: errorMessage,
-          details: error.message
+          details: error instanceof Error ? error.message : 'Unknown error'
         },
         { status: statusCode }
       )

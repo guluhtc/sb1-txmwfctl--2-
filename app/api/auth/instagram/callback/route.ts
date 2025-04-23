@@ -5,6 +5,11 @@ import { InstagramBusinessAuth } from '@/lib/instagram/auth'
 
 export const dynamic = 'force-dynamic'
 
+interface InstagramAuthError {
+  message: string;
+  code?: string;
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -81,12 +86,13 @@ export async function GET(request: Request) {
       }
 
       return NextResponse.redirect(new URL(next, request.url))
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Instagram auth error:', error)
-      const errorMessage = encodeURIComponent(error.message || 'unknown')
+      const authError = error as InstagramAuthError
+      const errorMessage = encodeURIComponent(authError.message || 'unknown')
       return NextResponse.redirect(new URL(`/login?error=${errorMessage}`, request.url))
     }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Instagram callback error:', error)
     return NextResponse.redirect(new URL('/login?error=unknown', request.url))
   }

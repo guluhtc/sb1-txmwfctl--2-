@@ -19,13 +19,22 @@ interface HashtagOptions {
   includeLocation: boolean
 }
 
+interface ErrorWithMessage {
+  message: string
+}
+
 export default function HindiHashtagsPage() {
-  const [isGenerating, setIsGenerating] = useState(false)
+  const [isGenerating, setIsGenerating] = useState<boolean>(false)
   const [generatedHashtags, setGeneratedHashtags] = useState<string[]>([])
-  const [isPremiumPreview, setIsPremiumPreview] = useState(true)
+  const [isPremiumPreview, setIsPremiumPreview] = useState<boolean>(true)
   const [savedHashtags, setSavedHashtags] = useState<string[]>([])
 
-  const handleGenerate = async (topic: string, options: HashtagOptions) => {
+  const handleGenerate = async (topic: string, options: HashtagOptions): Promise<void> => {
+    if (!topic.trim()) {
+      toast.error("कृपया एक टॉपिक दर्ज करें")
+      return
+    }
+
     setIsGenerating(true)
     try {
       // Simulated API call
@@ -40,18 +49,25 @@ export default function HindiHashtagsPage() {
       setGeneratedHashtags(dummyHashtags)
       toast.success("हैशटैग सफलतापूर्वक जनरेट किए गए!")
     } catch (error) {
-      toast.error("हैशटैग जनरेट करने में विफल")
+      const errorMessage = error instanceof Error ? error.message : "हैशटैग जनरेट करने में विफल"
+      console.error("Error generating hashtags:", error)
+      toast.error(errorMessage)
     } finally {
       setIsGenerating(false)
     }
   }
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text)
-    toast.success("हैशटैग क्लिपबोर्ड पर कॉपी किए गए!")
+  const handleCopy = async (text: string): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(text)
+      toast.success("हैशटैग क्लिपबोर्ड पर कॉपी किए गए!")
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "कॉपी करने में विफल"
+      toast.error(errorMessage)
+    }
   }
 
-  const handleSave = (hashtags: string) => {
+  const handleSave = (hashtags: string): void => {
     setSavedHashtags(prev => [...prev, hashtags])
     toast.success("हैशटैग लाइब्रेरी में सेव किए गए!")
   }
