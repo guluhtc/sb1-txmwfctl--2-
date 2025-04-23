@@ -11,25 +11,18 @@ import { BioForm } from "@/components/bios/bio-form"
 import { BioList } from "@/components/bios/bio-list"
 import { FeatureCards } from "@/components/bios/feature-cards"
 import { Metadata } from "next"
-import { BioGenerator } from "@/components/bios/bio-generator"
-import { BioExamples } from "@/components/bios/bio-examples"
-import { BioFeatures } from "@/components/bios/bio-features"
-import { BioTestimonials } from "@/components/bios/bio-testimonials"
-import { BioFaq } from "@/components/bios/bio-faq"
-import { BioCta } from "@/components/bios/bio-cta"
 
 type Props = {
   searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export default function BioPage({ searchParams }: Props) {
+export default function BiosGeneratorPage({ searchParams }: Props) {
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedBios, setGeneratedBios] = useState<string[]>([])
   const [isPremiumPreview, setIsPremiumPreview] = useState(true)
-  const [savedBios, setSavedBios] = useState<string[]>([])
 
-  const handleGenerate = (bios: string[]) => {
-    setGeneratedBios(prev => [...bios, ...prev])
+  const handleGenerate = async (bios: string[]) => {
+    setGeneratedBios(bios)
   }
 
   const handleCopy = (text: string) => {
@@ -37,31 +30,29 @@ export default function BioPage({ searchParams }: Props) {
     toast.success("Bio copied to clipboard!")
   }
 
-  const handleSave = (bio: string) => {
-    setSavedBios(prev => [...prev, bio])
-    toast.success("Bio saved to library!")
-  }
-
   return (
     <div className="page-container">
       <Navbar />
       <main className="main-content">
-        <div className="container px-4 sm:px-6">
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl mx-auto space-y-8"
           >
             <div className="text-center space-y-4">
-              <h1 className="text-3xl sm:text-4xl font-bold gradient-text">AI Bio Generator</h1>
-              <p className="text-lg sm:text-xl text-muted-foreground">
-                Create unique and engaging Instagram bios in seconds with AI
+              <h1 className="text-4xl font-bold gradient-text">AI Bio Generator</h1>
+              <p className="text-xl text-muted-foreground">
+                Create a professional Instagram bio that stands out
               </p>
             </div>
 
             <ToolsToggle />
 
-            <BioForm onGenerate={handleGenerate} />
+            <BioForm 
+              onGenerate={handleGenerate}
+              isGenerating={isGenerating}
+            />
 
             {isPremiumPreview && (
               <div className="flex items-center justify-center gap-2 text-sm text-primary">
@@ -70,18 +61,16 @@ export default function BioPage({ searchParams }: Props) {
               </div>
             )}
 
-            {generatedBios.length > 0 && (
-              <BioList 
-                bios={generatedBios}
-                onCopy={handleCopy}
-                onSave={handleSave}
-              />
-            )}
+            <BioList 
+              bios={generatedBios}
+              onCopy={handleCopy}
+            />
 
             <FeatureCards />
           </motion.div>
         </div>
       </main>
+      <FooterSection />
     </div>
   )
 }
