@@ -8,7 +8,6 @@ import { BioForm } from "@/components/bios/hindi/bio-form"
 import { BioList } from "@/components/bios/hindi/bio-list"
 import { FeatureCards } from "@/components/bios/feature-cards"
 import { FooterSection } from "@/components/footer-section"
-import { ToolsToggle } from "@/components/instagram/tools-toggle"
 import { Navbar } from "@/components/navbar"
 
 export default function BiosPage() {
@@ -25,6 +24,7 @@ export default function BiosPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
