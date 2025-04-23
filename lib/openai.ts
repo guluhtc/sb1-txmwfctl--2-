@@ -10,7 +10,7 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
-export async function generateContent(prompt: string, maxTokens: number = 500) {
+export async function generateContent(prompt: string, maxTokens: number = 500): Promise<string | null> {
   try {
     const completion = await openai.chat.completions.create({
       model: "microsoft/mai-ds-r1:free",
@@ -28,11 +28,14 @@ export async function generateContent(prompt: string, maxTokens: number = 500) {
     return completion.choices[0].message.content;
   } catch (error) {
     console.error('Error generating content:', error);
-    throw error;
+    return null;
   }
 }
 
-export async function generateCaption(prompt: string, options: { style?: string; engagement?: boolean; includeQuestion?: boolean; includeQuote?: boolean } = {}) {
+export async function generateCaption(
+  prompt: string, 
+  options: { style?: string; engagement?: boolean; includeQuestion?: boolean; includeQuote?: boolean } = {}
+): Promise<string | null> {
   const { style, engagement, includeQuestion, includeQuote } = options;
   let contentPrompt = `Generate an engaging Instagram caption for: ${prompt}`;
   
@@ -44,12 +47,12 @@ export async function generateCaption(prompt: string, options: { style?: string;
   return generateContent(contentPrompt);
 }
 
-export async function generateBio(topic: string, category: string) {
+export async function generateBio(topic: string, category: string): Promise<string | null> {
   const prompt = `Generate a professional Instagram bio for a ${category} account about ${topic}. Make it engaging and include relevant keywords.`;
   return generateContent(prompt);
 }
 
-export async function generateHashtags(topic: string, count: number = 30) {
+export async function generateHashtags(topic: string, count: number = 30): Promise<string[]> {
   const prompt = `Generate ${count} relevant Instagram hashtags for posts about ${topic}. Include a mix of popular and niche hashtags.`;
   const content = await generateContent(prompt);
   return content?.split(/\s+/).filter(tag => tag.startsWith('#')) || [];

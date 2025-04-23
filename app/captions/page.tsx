@@ -22,7 +22,7 @@ export default function CaptionsGeneratorPage({ searchParams }: Props) {
   const [isPremiumPreview, setIsPremiumPreview] = useState(true)
   const [savedCaptions, setSavedCaptions] = useState<string[]>([])
 
-  const handleGenerate = async (prompt: string, options: any) => {
+  const handleGenerate = async (prompt: string, options: { style?: string; engagement?: boolean; includeQuestion?: boolean; includeQuote?: boolean } = {}) => {
     if (!prompt) {
       toast.error("Please enter a prompt")
       return
@@ -31,11 +31,15 @@ export default function CaptionsGeneratorPage({ searchParams }: Props) {
     setIsGenerating(true)
     try {
       const caption = await generateCaption(prompt, options)
-      setGeneratedCaptions([caption, ...generatedCaptions])
-      toast.success("Caption generated successfully!")
+      if (caption) {
+        setGeneratedCaptions([caption, ...generatedCaptions])
+        toast.success("Caption generated successfully!")
+      } else {
+        toast.error("Failed to generate caption. Please try again.")
+      }
     } catch (error) {
       console.error('Error:', error)
-      toast.error("Failed to generate caption")
+      toast.error("Failed to generate caption. Please try again.")
     } finally {
       setIsGenerating(false)
     }
