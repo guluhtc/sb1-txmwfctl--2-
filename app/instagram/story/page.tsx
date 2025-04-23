@@ -156,7 +156,14 @@ export default function StoryDownloaderPage() {
                             controls
                             className="w-full h-full object-contain"
                             playsInline
-                          />
+                          >
+                            <track
+                              kind="captions"
+                              srcLang="en"
+                              label="English"
+                              default
+                            />
+                          </video>
                         ) : (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img

@@ -1,7 +1,8 @@
 "use client"
 
+import Link from 'next/link'
+import React, { useState } from 'react'
 import { Wand2, RefreshCw, Sliders } from "lucide-react"
-import { useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
@@ -189,6 +190,13 @@ export function CaptionForm({ onGenerate, isGenerating }: CaptionFormProps) {
             </>
           )}
         </Button>
+
+        <p className="text-sm text-muted-foreground">
+          Don&apos;t have an account?{" "}
+          <Link href="/signup" className="text-primary hover:underline">
+            Sign up
+          </Link>
+        </p>
       </div>
     </Card>
   )

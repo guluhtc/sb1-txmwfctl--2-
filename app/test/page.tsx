@@ -23,7 +23,9 @@ export default function TestPage() {
     setIsGenerating(true)
     try {
       const caption = await generateCaption(prompt)
-      setGeneratedCaption(caption)
+      if (caption) {
+        setGeneratedCaption(caption)
+      }
       toast.success("Caption generated successfully!")
     } catch (error) {
       console.error('Error:', error)

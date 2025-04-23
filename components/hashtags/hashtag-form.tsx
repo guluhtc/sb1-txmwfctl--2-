@@ -47,9 +47,12 @@ export function HashtagForm({ onGenerate, isGenerating }: HashtagFormProps) {
       <div className="grid gap-6">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
-            <label className="text-sm font-medium">Topic/Keywords</label>
+            <label htmlFor="topic" className="text-sm font-medium text-gray-700">
+              Topic
+            </label>
             <div className="relative">
               <Input
+                id="topic"
                 placeholder="Enter your main topic or keywords"
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
@@ -60,9 +63,11 @@ export function HashtagForm({ onGenerate, isGenerating }: HashtagFormProps) {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">Category</label>
+            <label htmlFor="category" className="text-sm font-medium text-gray-700">
+              Category
+            </label>
             <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger>
+              <SelectTrigger id="category">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>

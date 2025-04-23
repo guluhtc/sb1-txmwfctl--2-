@@ -77,6 +77,9 @@ export function HeroSection() {
           अपनी भाषा में बनाएं विश्वस्तरीय कंटेंट, करें स्मार्ट शेड्यूलिंग, और पाएं 10X ज़्यादा एंगेजमेंट। 
           हमारी AI टेक्नोलॉजी आपकी Instagram ग्रोथ को नई ऊंचाइयों तक ले जाएगी! ✨
         </motion.p>
+        <p className="mt-3 text-lg text-gray-500">
+          Generate &quot;engaging&quot; and &quot;creative&quot; Instagram bios in seconds
+        </p>
       </div>
 
       {/* Enhanced CTA section with social proof */}

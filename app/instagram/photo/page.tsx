@@ -109,12 +109,16 @@ export default function PhotoDownloaderPage() {
             <Card className="p-6 space-y-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Instagram URL</label>
-                  <Input
-                    placeholder="Paste Instagram profile or post URL here..."
+                  <label htmlFor="photoUrl" className="text-sm font-medium text-gray-700">
+                    Instagram Photo URL
+                  </label>
+                  <input
+                    id="photoUrl"
+                    type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    className="h-11"
+                    placeholder="https://www.instagram.com/p/..."
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                   <p className="text-sm text-muted-foreground">
                     Examples:<br />
@@ -153,7 +157,7 @@ export default function PhotoDownloaderPage() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={imageData.url}
-                        alt="Instagram image"
+                        alt="Instagram content"
                         className="w-full h-full object-contain"
                       />
                     </div>

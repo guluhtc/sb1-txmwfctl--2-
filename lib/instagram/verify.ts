@@ -1,4 +1,6 @@
 import { verifyToken as checkTokenValidity } from './token'
+import { createClient } from "@/lib/supabase"
+import { getToken } from "./token"
 
 import { supabase } from '@/lib/supabase'
 
@@ -6,6 +8,22 @@ export interface VerificationResult {
   isValid: boolean;
   token?: string;
   error?: string;
+}
+
+interface TokenResponse {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+}
+
+interface ErrorResponse {
+  error: {
+    message: string;
+    type: string;
+    code: number;
+    error_subcode: number;
+    fbtrace_id: string;
+  };
 }
 
 export async function validateInstagramToken(userId: string, token: string): Promise<VerificationResult> {
@@ -71,5 +89,26 @@ export async function createToken(userId: string, token: string): Promise<Verifi
       isValid: false,
       error: error.message
     }
+  }
+}
+
+export async function verifyToken(token: string): Promise<boolean> {
+  try {
+    const response = await fetch(
+      `https://graph.instagram.com/me?fields=id,username&access_token=${token}`
+    );
+    const data: TokenResponse | ErrorResponse = await response.json();
+    
+    if ('error' in data) {
+      console.error('Token verification failed:', data.error);
+      return false;
+    }
+    
+    return true;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error verifying token:', error.message);
+    }
+    return false;
   }
 }

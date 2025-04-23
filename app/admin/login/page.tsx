@@ -41,8 +41,8 @@ export default function AdminLoginPage() {
       }
 
       router.push("/admin/dashboard")
-    } catch (err) {
-      toast.error("Login failed. Please check your credentials.")
+    } catch {
+      toast.error("Invalid credentials")
     } finally {
       setIsLoading(false)
     }

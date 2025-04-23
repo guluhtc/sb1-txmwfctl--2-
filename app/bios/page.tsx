@@ -12,14 +12,20 @@ import { Navbar } from "@/components/navbar"
 
 export default function BiosPage() {
   const [generatedBios, setGeneratedBios] = useState<string[]>([])
+  const [isGenerating, setIsGenerating] = useState<boolean>(false)
 
   const handleGenerate = (bios: string[]) => {
     setGeneratedBios(bios)
   }
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text)
-    toast.success("Bio copied to clipboard!")
+  const handleCopy = async (text: string): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(text)
+      toast.success("Bio copied to clipboard!")
+    } catch (error) {
+      console.error("Failed to copy bio:", error)
+      toast.error("Failed to copy bio")
+    }
   }
 
   return (
@@ -41,7 +47,7 @@ export default function BiosPage() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <BioForm onGenerate={handleGenerate} />
+          <BioForm onGenerate={handleGenerate} isGenerating={isGenerating} />
           <BioList bios={generatedBios} onCopy={handleCopy} />
         </div>
 

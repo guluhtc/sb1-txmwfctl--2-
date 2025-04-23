@@ -56,12 +56,16 @@ export default function ProfilePicturePage() {
             <Card className="p-6 space-y-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Instagram Username</label>
+                  <label htmlFor="profileUrl" className="text-sm font-medium">
+                    Instagram Profile URL
+                  </label>
                   <Input
-                    placeholder="Enter Instagram username..."
+                    id="profileUrl"
+                    type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="h-11"
+                    placeholder="https://www.instagram.com/username"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                 </div>
 

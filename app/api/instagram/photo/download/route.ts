@@ -230,14 +230,17 @@ export async function POST(request: Request) {
         { status: statusCode }
       )
     }
-  } catch (error: any) {
-    console.error('Request processing error:', error)
-    return NextResponse.json(
-      {
-        message: 'Failed to process request',
-        details: error.message
-      },
-      { status: 500 }
-    )
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Download error:', error.message)
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+    return new Response(JSON.stringify({ error: 'An unknown error occurred' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 }

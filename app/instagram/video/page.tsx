@@ -12,15 +12,23 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 
-
+interface VideoData {
+  url: string
+  type: string
+  topic: string
+  category: string
+  tone: string
+  length: string
+  includeMusic: boolean
+  includeEffects: boolean
+}
 
 export default function VideoDownloaderPage() {
   const [url, setUrl] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [videoData, setVideoData] = useState<{
-    url: string;
-    type: string;
-  } | null>(null)
+  const [isGenerating, setIsGenerating] = useState<boolean>(false)
+  const [generatedVideo, setGeneratedVideo] = useState<string | null>(null)
+  const [videoData, setVideoData] = useState<VideoData | null>(null)
 
   const handleDownload = async () => {
     if (!url) {
@@ -54,7 +62,13 @@ export default function VideoDownloaderPage() {
 
       setVideoData({
         url: objectUrl,
-        type: videoBlob.type || 'video/mp4'
+        type: videoBlob.type || 'video/mp4',
+        topic: '',
+        category: '',
+        tone: '',
+        length: '',
+        includeMusic: false,
+        includeEffects: false
       })
 
       toast.success("Video loaded successfully!")
@@ -87,6 +101,37 @@ export default function VideoDownloaderPage() {
     }
   }, [videoData])
 
+  const handleGenerate = async (data: VideoData) => {
+    try {
+      setIsGenerating(true)
+      setVideoData(data)
+      const response = await fetch('/api/instagram/video', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          topic: data.topic,
+          category: data.category,
+          tone: data.tone,
+          length: data.length,
+          includeMusic: data.includeMusic,
+          includeEffects: data.includeEffects,
+        }),
+      })
+      const data = await response.json()
+      if (data.error) {
+        throw new Error(data.error)
+      }
+      setGeneratedVideo(data.video)
+    } catch (error) {
+      console.error('Error generating video:', error)
+      toast.error('Failed to generate video')
+    } finally {
+      setIsGenerating(false)
+    }
+  }
+
   return (
     <div className="page-container">
       <Navbar />
@@ -109,12 +154,16 @@ export default function VideoDownloaderPage() {
             <Card className="p-6 space-y-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Instagram URL</label>
+                  <label htmlFor="videoUrl" className="text-sm font-medium">
+                    Instagram Video URL
+                  </label>
                   <Input
-                    placeholder="Paste Instagram video URL here..."
+                    id="videoUrl"
+                    type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    className="h-11"
+                    placeholder="https://www.instagram.com/p/..."
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                   <p className="text-sm text-muted-foreground">
                     Examples:<br />
@@ -152,7 +201,14 @@ export default function VideoDownloaderPage() {
                         src={videoData.url}
                         controls
                         className="w-full h-full"
-                      />
+                      >
+                        <track
+                          kind="captions"
+                          srcLang="en"
+                          label="English"
+                          default
+                        />
+                      </video>
                     </div>
                     <Button
                       className="w-full"

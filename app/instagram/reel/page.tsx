@@ -109,12 +109,16 @@ export default function ReelDownloaderPage() {
             <Card className="p-6 space-y-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Instagram Reel URL</label>
+                  <label htmlFor="reelUrl" className="text-sm font-medium">
+                    Instagram Reel URL
+                  </label>
                   <Input
-                    placeholder="Paste Instagram reel URL here..."
+                    id="reelUrl"
+                    type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    className="h-11"
+                    placeholder="https://www.instagram.com/reel/..."
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                   <p className="text-sm text-muted-foreground">
                     Example: https://www.instagram.com/reel/ABC123xyz/
@@ -150,7 +154,14 @@ export default function ReelDownloaderPage() {
                         src={reelData.url}
                         controls
                         className="w-full h-full"
-                      />
+                      >
+                        <track
+                          kind="captions"
+                          srcLang="en"
+                          label="English"
+                          default
+                        />
+                      </video>
                     </div>
                     <Button
                       className="w-full"
