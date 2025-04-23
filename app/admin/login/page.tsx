@@ -9,43 +9,40 @@ import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { supabase } from "@/lib/supabase"
 
 interface AuthData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export default function AdminLoginPage() {
   const router = useRouter()
   const [authData, setAuthData] = useState<AuthData>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   })
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    setError(null)
 
     try {
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(authData),
       })
 
       if (!response.ok) {
-        throw new Error('Login failed')
+        throw new Error("Login failed")
       }
 
-      router.push('/admin/dashboard')
+      router.push("/admin/dashboard")
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
+      toast.error("Login failed. Please check your credentials.")
     } finally {
       setIsLoading(false)
     }

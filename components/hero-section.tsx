@@ -125,6 +125,9 @@ export function HeroSection() {
                   width={32}
                   height={32}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  quality={75}
+                  sizes="(max-width: 640px) 24px, 32px"
                 />
               </div>
             ))}
@@ -237,6 +240,9 @@ export function HeroSection() {
                       width={80}
                       height={80}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      quality={75}
+                      sizes="(max-width: 640px) 60px, 80px"
                     />
                   </div>
                   <div className="absolute -bottom-2 -right-2 bg-primary text-white text-xs font-medium px-2 py-1 rounded-full">
